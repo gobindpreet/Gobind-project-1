@@ -86,22 +86,3 @@ Based on the user's selection, the appropriate game mode is launched. The game w
 The `main()` function also seeds the random number generator using `srand()` and the current time with `time(0)` to ensure that the computer's moves are unpredictable and not repeated across multiple runs.
 
 ---
-
-## Sample Output
-
-*(Add a snapshot of the game output here)*
-
----
-
-## About Me
-
-I am a Computer Science student who enjoys working on coding projects and improving my programming skills. You can reach out to me through the following channels:
-
-- **Email**: [your-email@example.com](mailto:your-email@example.com)
-- **WhatsApp**: [Click here](https://wa.me/1234567890)
-- **LinkedIn**: [Your LinkedIn](https://www.linkedin.com/in/your-profile)
-
----
-
-Thank you for checking out my Rock Paper Scissors game!
-
