@@ -29,8 +29,7 @@ Where **Grade Points** for a course are calculated as:
 
 **Course Credits** represent the weight or importance of the course, often derived from the total marks.
 
-![Credits](https://github.com/user-attachments/assets/2f5d77c7-607d-4004-8044-29ad485a668c)
-
+BROCODE: https://www.youtube.com/@BroCodez
 
 ## Code Explanation
 
@@ -84,19 +83,4 @@ The main function is responsible for the following:
 4. **Add Courses to Student**: After the user inputs the course details, each course is added to the student's record.
 5. **Display Courses**: The program displays a list of all the courses, showing their names, total marks, and obtained marks.
 6. **Calculate and Display GPA and CGPA**: The program calculates the GPA for the current semester and the cumulative CGPA, displaying them in the format with 2 decimal places.
-
-## Sample Output
-
-![sampleCGPA_Calculator](https://github.com/user-attachments/assets/250c0394-2323-4083-9234-34c5e7df8767)
-
-## About Me
-
-A passionate Computer Science student with an interest in software development, open-source projects, and learning new technologies.
-
-
-### Contact Me
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/yourusername)
-[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:your-email@example.com)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yourprofile)
-[![WhatsApp](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/yourphonenumber)
 
