@@ -54,17 +54,3 @@ The `TicTacToe` class encapsulates the game logic and handles the game board, pl
 ### Main Function
 
 The main function creates an instance of the `TicTacToe` class and starts the game by calling the `playGame()` method.
-
-## Sample Output
-
-(Add a snapshot of the game output here)
-
-## About Me
-
-A passionate Computer Science student with an interest in software development, open-source projects, and learning new technologies.
-
-### Contact Me
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/yourusername)
-[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:your-email@example.com)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yourprofile)
-[![WhatsApp](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/yourphonenumber)
