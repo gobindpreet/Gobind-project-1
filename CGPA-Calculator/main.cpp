@@ -1,139 +1,103 @@
 #include <iostream>
 #include <vector>
-#include <iomanip>     //Used for Input and Output Formatting
-using namespace std;
+#include <string>
+#include <numeric>
+#include <iomanip>
+#include <map>
 
-// Class to represent a single course
-class Course {
-private:
-    string courseName;
-    int totalMarks;
-    int obtainedMarks;
+// Function to calculate GPA for a given grade point
+double calculate_gpa(int grade_points) {
+    if (grade_points == 10) return 10.0; // A+
+    if (grade_points >= 9) return 9.0;
+    if (grade_points >= 8) return 8.0;
+    if (grade_points >= 7) return 7.0;
+    if (grade_points >= 6) return 6.0;
+    if (grade_points >= 5) return 5.0;
+    if (grade_points >= 4) return 4.0; // D
+    return 0.0; // F
+}
 
-public:
-    Course(string name, int total, int obtained)
-        : courseName(name), totalMarks(total), obtainedMarks(obtained) {}
-
-    // Getters 
-    int getCredits() const { return totalMarks / 10; }           // Represents the weight or importance of the course based on total marks.
-    double getGradePoints() const { return (obtainedMarks / (double)totalMarks) * getCredits() * 4.0; }
-    string getCourseName() const { return courseName; }
-    int getTotalMarks() const { return totalMarks; }
-    int getObtainedMarks() const { return obtainedMarks; }
-};
-
-// Class to represent a student
-class Student {
-private:
-    vector<Course> courses; // List of courses for the current semester
-    double previousCGPA;
-
-public:
-    // Constructor to initialize previous CGPA
-    Student(double cgpa) : previousCGPA(cgpa) {}
-
-    // Add a course to the student's record
-    void addCourse(const Course &course) {
-        courses.push_back(course);
-    }
-
-    // Calculate GPA for the current semester
-    double calculateGPA() {
-        double totalGradePoints = 0.0;
-        int totalCredits = 0;
-
-        for (const auto &course : courses) {
-            totalGradePoints += course.getGradePoints();
-            totalCredits += course.getCredits();
-        }
-
-        return (totalCredits > 0) ? (totalGradePoints / totalCredits) : 0.0;
-        /*
-        This can also be written as 
-                if (totalCredits > 0) {
-                return totalGradePoints / totalCredits;  // Calculate GPA
-                } else {
-                return 0.0;  // No courses, so return GPA as 0.0
-                }
-        */
-    }
-
-    // Calculate new CGPA
-    double calculateCGPA() {
-        double currentGPA = calculateGPA();
-        return (previousCGPA + currentGPA) / 2.0; // Simplified CGPA calculation
-    }
-
-    // Display details of all courses
-    void displayCourses() {
-        cout << "\nCourses Details:\n";
-        cout << left << setw(20) << "Course Name" << setw(15) << "Total Marks" << setw(15) << "Obtained Marks" << endl;
-        for (const auto &course : courses) {
-            cout << left << setw(20) << course.getCourseName() << setw(15) << course.getTotalMarks() << setw(15) << course.getObtainedMarks() << endl;
-        }
-    }
-};
+// Function to get the grade letter for a given grade point
+std::string get_grade_letter(int grade_points) {
+    if (grade_points == 10) return "A+";
+    if (grade_points == 9) return "A";
+    if (grade_points == 8) return "B+";
+    if (grade_points == 7) return "B";
+    if (grade_points == 6) return "C+";
+    if (grade_points == 5) return "C";
+    if (grade_points == 4) return "D";
+    return "F";
+}
 
 int main() {
-    double previousCGPA;
+    int num_semesters;
+    std::cout << "Enter the total number of semesters (e.g., 8): ";
+    std::cin >> num_semesters;
 
-    cout << "Enter your previous CGPA: ";
-    cin >> previousCGPA;
-
-    if (previousCGPA < 0.0 || previousCGPA > 4.0) {
-        cout << "Error: CGPA must be between 0.0 and 4.0.\n";
+    if (num_semesters <= 0) {
+        std::cout << "Number of semesters must be positive.\n";
         return 1;
     }
 
-    Student student(previousCGPA);
-    int numCourses;
+    double overall_total_grade_points_product_credits = 0.0;
+    int overall_total_credits = 0;
 
-    cout << "Enter the number of courses: ";
-    cin >> numCourses;
+    for (int s = 1; s <= num_semesters; ++s) {
+        std::cout << "\n--- Semester " << s << " ---" << std::endl;
+        int num_courses;
+        std::cout << "Enter the number of courses for Semester " << s << ": ";
+        std::cin >> num_courses;
 
-    if (numCourses <= 0 || numCourses > 10) {
-        cout << "Error: Invalid number of courses\n";
-        return 1;
-    }
-
-    for (int i = 0; i < numCourses; ++i) {
-        string courseName;
-        int totalMarks;
-        int obtainedMarks;
-
-        cout << "\nEnter details for course " << (i + 1) << ":\n";
-        cout << "Course Name: ";
-        cin.ignore(); // To handle newline from previous input
-        getline(cin, courseName);
-
-        cout << "Total Marks: ";
-        cin >> totalMarks;
-        if (totalMarks <= 0 || totalMarks >= 300) {
-            cout << "Error: Invalid number of marks\n";
-            return 1;
+        if (num_courses <= 0) {
+            std::cout << "Number of courses must be positive for this semester. Skipping.\n";
+            continue; // Skip to next semester if no courses
         }
 
-        cout << "Obtained Marks: ";
-        cin >> obtainedMarks;
-        if (obtainedMarks < 0 || obtainedMarks > totalMarks) {
-            cout << "Error: Invalid obtained marks.\n";
-            return 1;
+        double semester_total_grade_points_product_credits = 0.0;
+        int semester_total_credits = 0;
+
+        for (int c = 1; c <= num_courses; ++c) {
+            int grade_points;
+            int credits;
+
+            std::cout << "  Enter grade points (0-10) for Course " << c << " in Semester " << s << ": ";
+            std::cin >> grade_points;
+            while (grade_points < 0 || grade_points > 10) {
+                std::cout << "  Invalid grade points. Please enter between 0 and 10: ";
+                std::cin >> grade_points;
+            }
+
+            std::cout << "  Enter credits for Course " << c << " in Semester " << s << ": ";
+            std::cin >> credits;
+            while (credits <= 0) {
+                std::cout << "  Credits must be positive. Please enter again: ";
+                std::cin >> credits;
+            }
+
+            double course_gpa = calculate_gpa(grade_points);
+            semester_total_grade_points_product_credits += course_gpa * credits;
+            semester_total_credits += credits;
         }
 
-        // Add course to student's record
-        student.addCourse(Course(courseName, totalMarks, obtainedMarks));
+        if (semester_total_credits == 0) {
+            std::cout << "  No credits earned in Semester " << s << ". Semester GPA not calculable.\n";
+        } else {
+            double semester_gpa = semester_total_grade_points_product_credits / semester_total_credits;
+            std::cout << "  Semester " << s << " GPA: " << std::fixed << std::setprecision(2) << semester_gpa << std::endl;
+        }
+        
+        overall_total_grade_points_product_credits += semester_total_grade_points_product_credits;
+        overall_total_credits += semester_total_credits;
     }
 
-    // Display all courses
-    student.displayCourses();
-
-    // Calculate and display GPA and CGPA
-    double gpa = student.calculateGPA();
-    double cgpa = student.calculateCGPA();
-
-    cout << fixed << setprecision(2);
-    cout << "\nGPA for the current semester: " << gpa << endl;
-    cout << "Cumulative CGPA: " << cgpa << endl;
+    std::cout << "\n--- Overall CGPA Calculation ---" << std::endl;
+    if (overall_total_credits == 0) {
+        std::cout << "Cannot calculate Overall CGPA: Total credits across all semesters are zero.\n";
+    } else {
+        double overall_cgpa = overall_total_grade_points_product_credits / overall_total_credits;
+        std::cout << "Total Credits across all semesters: " << overall_total_credits << std::endl;
+        std::cout << "Overall CGPA: " << std::fixed << std::setprecision(2) << overall_cgpa << std::endl;
+    }
 
     return 0;
 }
