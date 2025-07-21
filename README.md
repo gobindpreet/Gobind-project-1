@@ -1,7 +1,5 @@
 # C++ Basic Projects
 
-Here is the collection of basic C++ projects to help beginners understand and implement fundamental programming concepts.
-
 ## Contents
 
 <details>
