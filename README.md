@@ -19,15 +19,7 @@
 </details>
 
 <details>
-  <summary>3. Login and Registration System</summary>
-  <ul>
-    <li><a href="Login-Registration-System/main.cpp">main.cpp</a></li>
-    <li><a href="Login-Registration-System/README.md">README.md</a></li>
-  </ul>
-</details>
-
-<details>
-  <summary>4. Search Engine</summary>
+  <summary>3. Search Engine</summary>
   <ul>
     <li><a href="Search-Engine/main.cpp">main.cpp</a></li>
     <li><a href="Search-Engine/README.md">README.md</a></li>
@@ -35,7 +27,7 @@
 </details>
 
 <details>
-  <summary>5. Tic Tac Toe</summary>
+  <summary>4. Tic Tac Toe</summary>
   <ul>
     <li><a href="Tic-Tac-Toe/main.cpp">main.cpp</a></li>
     <li><a href="Tic-Tac-Toe/README.md">README.md</a></li>
